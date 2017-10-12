@@ -29,6 +29,42 @@ app.get('/webhook/', function(req, res){
 	res.send('wrong token')
 })
 
+let token = "EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa8xZCrJI1Km4r0MsL03T0actF5FbfhtDn47rOZAckBhE9rEuw4DVxUvgJjw5jVGjY3XNxM9VPTH7lbKnPYox5c5aDW4p2zI1uix2OjhQZDZD"
+
+app.post('/webhook/', function(req, res){
+  let messaging_event = req.body.entry[0].messaging
+  for(let i = 0; i < messaging_event.length; i++){
+  	let event = messaging_event[i]
+  	let sender = event.sender.id
+
+    if(event.message && event.message.text){
+    	let text = event.message.text
+    	sendText(sender, "Text echo: "+text.substring(0,100))
+    }
+  }
+  res.sendStatus(200)
+})
+
+function sendText(sender, text){
+	let messageData = {text:text}
+	request({
+		url: "https://graph.facebook.com/v2.6/me/messages",
+		qs: {access_token: token},
+		method: "POST",
+		json: {
+			recipient: {id: sender},
+			message: messageData
+		}
+	}, function(error, response, body){
+		if(error){
+			console.log("Sending error")
+		}else if(response.body.error){
+			console.log("response body error")
+		}
+	})
+}
+
+
 app.listen(app.get('port'), function(){
 	console.log("runing: port")
 })
