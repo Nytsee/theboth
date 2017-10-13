@@ -49,6 +49,9 @@ app.post('/webhook/', function(req, res){
         if(text === "do you understand?"){
         	text = "when i do not understand i become an ugly parrot :/"
         }
+        if(text === "what is your address?"){
+        	text = "Please check the Map : http://bit.ly/2z46IuE"
+        }
         
 
 
