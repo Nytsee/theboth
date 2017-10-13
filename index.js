@@ -61,8 +61,11 @@ app.post('/webhook/', function(req, res){
         	text = "Please check the Map : http://bit.ly/2z46IuE"
         }
         else if(/what are you doing|what're you doing|what do you do|what's your problem|you doing|u doing/.test(text)){
-        	text = "I am don't really sure, But i still can provide you answers !"
-        }        
+        	text = "I am not really sure, But i still can provide you answers !"
+        }  
+        else if(/what is your phone number|what's your phone number|u're phone number|your phonenumer|your phone number|/.test(text)){
+        	text = "You can reach us on : +212 606 87 07 80"
+        }       
         else{
         	text = "Parrot Mode: "+text
         }
