@@ -63,7 +63,7 @@ app.post('/webhook/', function(req, res){
         else if(/what are you doing|what're you doing|what do you do|what's your problem|you doing|u doing/.test(text)){
         	text = "I am not really sure, But i still can provide you answers !"
         }  
-        else if(/whatisyourphonenumber|what'syourphonenumber|u'rephonenumber|yourphonenumer|yourphonenumber|/.test(text)){
+        else if(/whatisyourphonenumber|what'syourphonenumber|u'rephonenumber|yourphonenumer|yourphonenumber/.test(text)){
         	text = "You can reach us on : +212 606 87 07 80"
         }       
         else{
