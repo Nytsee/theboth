@@ -42,13 +42,17 @@ app.post('/webhook/', function(req, res){
 
         if(text === "hi"){
         	text = "Hi, how can i help you?"
-        }if else(text === "who are you?"){
+        }
+        if(text === "who are you?"){
         	text = "It doesn't matter, am just a programmed Bot :)"
-        }if else(text === "do you understand?"){
+        }
+        if(text === "do you understand?"){
         	text = "when i do not understand i become an ugly parrot :/"
-        }if else (text === "what is your address?"){
+        }
+        if(text === "what is your address?"){
         	text = "Please check the Map : http://bit.ly/2z46IuE"
-        }else{
+        }
+        else{
         	text = "Parrot Mode: "+text
         }
 
