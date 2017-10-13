@@ -40,20 +40,38 @@ app.post('/webhook/', function(req, res){
     if(event.message && event.message.text){
     	let text = event.message.text
 
-        if(text === "hi"){
-        	text = "Hi, how can i help you?"
-        }
-        if else(text === "who are you?"){
-        	text = "It doesn't matter, am just a programmed Bot :)"
-        }
-        if else(text === "do you understand?"){
-        	text = "when i do not understand i become an ugly parrot :/"
-        }
-        if else (text === "what is your address?"){
-        	text = "Please check the Map : http://bit.ly/2z46IuE"
-        }else{
-        	text = "Parrot Mode: "+text
-        }
+        // if(text === "hi"){
+        // 	text = "Hi, how can i help you?"
+        // }
+        // if else(text === "who are you?"){
+        // 	text = "It doesn't matter, am just a programmed Bot :)"
+        // }
+        // if else(text === "do you understand?"){
+        // 	text = "when i do not understand i become an ugly parrot :/"
+        // }
+        // if else (text === "what is your address?"){
+        // 	text = "Please check the Map : http://bit.ly/2z46IuE"
+        // }else{
+        // 	text = "Parrot Mode: "+text
+        // }
+
+
+		 switch(text) {
+		    case "hi":
+		        text = "Hi, how can i help you?"
+		        break;
+		    case "who are you?":
+		        text = "It doesn't matter, am just a programmed Bot :)"
+		        break;
+		    case "do you understand?":
+		        text = "when i do not understand i become an ugly parrot :/"
+		        break;
+		    case "what is your address?":
+		        text = "Please check the Map : http://bit.ly/2z46IuE"
+		        break;		        		        
+		    default:
+		        text = "Parrot Mode: "+text
+		}       
         
 
     	sendText(sender, text.substring(0,100))
