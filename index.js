@@ -60,6 +60,9 @@ app.post('/webhook/', function(req, res){
         else if(/your address|locals|offices|votre adresse|vos locaux|locaux/.test(text)){
         	text = "Please check the Map : http://bit.ly/2z46IuE"
         }
+        else if(/what are you doing|what're you doing|what do you do|what's your problem|you doing|u doing/.test(text)){
+        	text = "I am don't really sure, But i still can provide you answers !"
+        }        
         else{
         	text = "Parrot Mode: "+text
         }
