@@ -40,7 +40,7 @@ app.post('/webhook/', function(req, res){
     if(event.message && event.message.text){
     	let text = event.message.text
 
-        if(text === "hi"){
+        if(text.includes("hi")){
         	text = "Hi, how can i help you?"
         }
         if(text === "who are you?"){
