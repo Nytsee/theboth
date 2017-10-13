@@ -51,7 +51,7 @@ app.post('/webhook/', function(req, res){
         if(/hello|hi|salam|salut|morning|bonjour/.test(text)){
         	text = "Hi, how can i help you?"
         }
-        if(text === "who are you?"){
+        	if(/who|are|you/.test(text)){
         	text = "It doesn't matter, am just a programmed Bot :)"
         }
         if(text === "do you understand?"){
