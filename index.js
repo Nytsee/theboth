@@ -51,13 +51,13 @@ app.post('/webhook/', function(req, res){
         if(/hello|hi|salam|salut|morning|bonjour/.test(text)){
         	text = "Hi, how can i help you?"
         }
-        	if(/who|are|you/.test(text)){
+        else if(/who|are|you/.test(text)){
         	text = "It doesn't matter, am just a programmed Bot :)"
         }
-        if(text === "do you understand?"){
+        else if(text === "do you understand?"){
         	text = "when i do not understand i become an ugly parrot :/"
         }
-        if(text === "what is your address?"){
+        else if(text === "what is your address?"){
         	text = "Please check the Map : http://bit.ly/2z46IuE"
         }
         else{
