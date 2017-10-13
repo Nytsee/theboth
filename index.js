@@ -10,14 +10,20 @@ app.set('port' , (process.env.PORT || 5000));
 
 
 //Allow us to precess the data
-app.use(bodyParser.urlencoded({extented: false}))
+//app.use(bodyParser.urlencoded({extented: false}))
 app.use(bodyParser.json())
 
 
 //Routes
 
-app.get('/' , function(req, res) {
+app.get('/test/' , function(req, res) {
 	res.send("Hi I am a chatBox")
+})
+
+app.get('/' , function(req, res) {
+	let str = "hello every body"
+    let value = /hello|hi|howdy/.test(str);
+    res.send(value)
 })
 
 //Facebook
@@ -31,6 +37,8 @@ app.get('/webhook/', function(req, res){
 
 let token = "EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa8xZCrJI1Km4r0MsL03T0actF5FbfhtDn47rOZAckBhE9rEuw4DVxUvgJjw5jVGjY3XNxM9VPTH7lbKnPYox5c5aDW4p2zI1uix2OjhQZDZD"
 
+
+
 app.post('/webhook/', function(req, res){
   let messaging_event = req.body.entry[0].messaging
   for(let i = 0; i < messaging_event.length; i++){
@@ -40,7 +48,7 @@ app.post('/webhook/', function(req, res){
     if(event.message && event.message.text){
     	let text = event.message.text
 
-        if(text.includes("hi")){
+        if(/hello|hi|salam|salut|morning|bonjour/.test(text)){
         	text = "Hi, how can i help you?"
         }
         if(text === "who are you?"){
