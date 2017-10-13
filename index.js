@@ -41,12 +41,12 @@ app.post('/webhook/', function(req, res){
     	let text = event.message.text
 
         if(text === "hi"){
-        	text = "Hi, how can i help you ?"
+        	text = "Hi, how can i help you?"
         }
         if(text === "who are you?"){
         	text = "It doesn't matter, am just a programmed Bot :)"
         }
-        if(text === "do you understand ?"){
+        if(text === "do you understand?"){
         	text = "when i do not understand i become an ugly parrot :/"
         }
         
