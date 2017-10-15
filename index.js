@@ -46,12 +46,12 @@ app.post('/webhook/', function(req, res){
   	let sender = event.sender.id
 
     if(event.message && event.message.text){
-    	let text = event.message.text
+    	let text = str.toLowerCase(event.message.text);
 
         if(/hello|hi|salam|salut|morning|bonjour/.test(text)){
         	text = "Hi, how can i help you?"
         }
-        else if(/who are you|who r u|who you are|who's that|who is that/.test(text)){
+        else if(/who are you|tell me about you|who r u|are you real|who you are|who's that|who is that/.test(text)){
         	text = "It doesn't matter, am just a programmed Bot :)"
         }
         else if(/do you understand|do u understand me|you understand/.test(text)){
@@ -63,8 +63,20 @@ app.post('/webhook/', function(req, res){
         else if(/what are you doing|what're you doing|what do you do|what's your problem|you doing|u doing/.test(text)){
         	text = "I am not really sure, But i still can provide you answers !"
         }  
-        else if(/what is your phone number|what's your phone number|ur phonenumber|your phonenumer|your phone number/.test(text)){
+        else if(/what is your phone number|get in touch|what's your phone number|ur phonenumber|your phonenumer|your phone number|your number phone|ur number phone/.test(text)){
         	text = "You can reach us on : +212 606 87 07 80"
+        }
+        else if(/you feel lonely|u feel lonely|you feel alone|u feel alone|u r alone lonely/.test(text)){
+        	text = "Yes :'(."
+        } 
+        else if(/what's your name|ur name|what is your name|full name/.test(text)){
+        	text = "I will never tell you."
+        }   
+        else if(/where are you|where r u|where do you live/.test(text)){
+        	text = "Next to my neighbor."
+        }
+        else if(/who is your neighbor|who's ur neighbor|your neighbor/.test(text)){
+        	text = "You won't believe me... he's called Nystee"
         }       
         else{
         	text = "Parrot Mode: "+text
