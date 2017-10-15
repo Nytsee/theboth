@@ -46,7 +46,7 @@ app.post('/webhook/', function(req, res){
   	let sender = event.sender.id
 
     if(event.message && event.message.text){
-    	let text = str.toLowerCase(event.message.text);
+    	let text = event.message.text.toLowerCase();
 
         if(/hello|hi|salam|salut|morning|bonjour/.test(text)){
         	text = "Hi, how can i help you?"
