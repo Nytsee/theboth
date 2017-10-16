@@ -88,7 +88,7 @@ app.post('/webhook/', function(req, res){
         else if(/fuck you|fuck u|you suck|u suck|/.test(text)){
             text = "Be more imaginative, would you?"
         }      
-        else if(/ok|okey|okay|yeap|ahaa|yes sir/.test(text)){
+        else if(/ok|okey|okay|yeap|ahaa|ahaaa|yes sir/.test(text)){
             text = "Nice :)"
         }                        
         else{
