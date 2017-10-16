@@ -83,7 +83,10 @@ app.post('/webhook/', function(req, res){
         }    
         else if(/what can you do for me|what do you know|what do u know|whats ur skills|what is your skills|whats are ure skills|whats are you good at|ur skills|your skills|your services/.test(text)){
             text = "Wait I'm getting a cup of coffee, I'll get back to you in a sec"
-        }             
+        }    
+        else if(/where are you|where r u|where are u|where r you/.test(text)){
+            text = "On planet Earth, same as you ;)"
+        }                   
         else{
         	//text = "Parrot Mode: "+text
             text = "Hein !"
