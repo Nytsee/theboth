@@ -87,7 +87,10 @@ app.post('/webhook/', function(req, res){
         }    
         else if(/fuck you|fuck u|you suck|u suck/.test(text)){
             text = "Be more imaginative, would you?"
-        }      
+        }     
+        else if(/darif|mr darif|mister darif|darif amine|amine darif/.test(text)){
+            text = "One of the best DJ's on the planet Earth, check his profile https://www.facebook.com/aminedrif"
+        }            
         else if(/ok|okey|okay|yeap|ahaa|ahaaa|yes sir/.test(text)){
             text = "Nice :)"
         }                        
