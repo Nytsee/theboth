@@ -112,7 +112,7 @@ app.post('/webhook/', function(req, res){
         else if(/why/.test(text)){
             text = "Because you have no idea who I am"
         }  
-        else if(/i hate u|i hate u|hate u/.test(text)){
+        else if(/i hate u|i hate you|hate u/.test(text)){
             text = "Why do you hate me?"
         }  
         else if(/you are so|you r|you are/.test(text)){
