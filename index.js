@@ -73,6 +73,7 @@ app.post('/webhook/', function(req, res){
         	text = "I will never tell you."
         }   
         else if(/where are you|where r u|where do you live/.test(text)){
+
         	text = "Next to my neighbor."
         }
         else if(/who is your neighbor|who's ur neighbor|your neighbor/.test(text)){
@@ -84,8 +85,8 @@ app.post('/webhook/', function(req, res){
         else if(/what can you do for me|what do you know|what do u know|whats ur skills|what is your skills|whats are ure skills|whats are you good at|ur skills|your skills|your services/.test(text)){
             text = "Wait I'm getting a cup of coffee, I'll get back to you in a sec"
         }    
-        else if(/where are you|where r u|where are u|where r you/.test(text)){
-            text = "On planet Earth, same as you ;)"
+        else if(/fuck you|fuck u|you suck|u suck|/.test(text)){
+            text = "Be more imaginative, would you?"
         }                   
         else{
         	//text = "Parrot Mode: "+text
