@@ -103,10 +103,10 @@ app.post('/webhook/', function(req, res){
         else if(/you are so annoying|you r so annoying|u r annoying|you are boaring|get me boaring|make me boaring/.test(text)){
             text = "As are you 😎"
         }  
-        else if(/goodbye|adios|ciao|bye|see ya|see you|/.test(text)){
+        else if(/goodbye|adios|ciao|bye|see ya|see you/.test(text)){
             text = "Hasta la vista, baby."
         }  
-        else if(/love you|i love you|love u|kiss|kisss|mouah|/.test(text)){
+        else if(/love you|i love you|love u|kiss|kisss|mouah/.test(text)){
             text = "Same for you 😍😍😍😍"
         }   
         else if(/why/.test(text)){
