@@ -48,7 +48,7 @@ app.post('/webhook/', function(req, res){
     if(event.message && event.message.text){
     	let text = event.message.text.toLowerCase();
 
-        if(/hello|hi|salam|salut|morning|bonjour/.test(text)){
+        if(/hello|hi|salam|salut|morning|hey|bonjour/.test(text)){
         	text = "Hi, how can i help you?"
         }
         else if(/who are you|tell me about you|who r u|are you real|who you are|who's that|who is that/.test(text)){
@@ -78,11 +78,12 @@ app.post('/webhook/', function(req, res){
         else if(/who is your neighbor|who's ur neighbor|your neighbor/.test(text)){
         	text = "You won't believe me... he's called Nystee"
         }  
-        else if(/we can be friends|be friends|your friend/.test(text)){
+        else if(/we can be friends|be friends|we be friends|be your friend|be my friend/.test(text)){
             text = "No, sorry i am not interested"
         }       
         else{
-        	text = "Parrot Mode: "+text
+        	//text = "Parrot Mode: "+text
+            text = "Hein !"
         }
 
         
