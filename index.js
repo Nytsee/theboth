@@ -77,6 +77,9 @@ app.post('/webhook/', function(req, res){
         }
         else if(/who is your neighbor|who's ur neighbor|your neighbor/.test(text)){
         	text = "You won't believe me... he's called Nystee"
+        }  
+        else if(/we can be friends|be friends|your friend/.test(text)){
+            text = "No, sorry i am not interested"
         }       
         else{
         	text = "Parrot Mode: "+text
