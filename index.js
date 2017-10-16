@@ -119,7 +119,7 @@ app.post('/webhook/', function(req, res){
             text = "I don't really think so"
         }  
         else if((text == "really") || (text == "really ?") || (text =="really")){
-            text = "I don't really think so"
+            text = "Yes, you are funny !"
         }                                                             
         else{
             //text = "Parrot Mode: "+text
