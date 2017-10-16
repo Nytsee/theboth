@@ -228,6 +228,11 @@ function sendChoiceLink(sender, text){
                         "type":"web_url",
                         "url":"https://www.messenger.com",
                         "title":"Visit Messenger"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Start Chatting",
+                        "payload":"hi"
                       }
                     ]
                   }
