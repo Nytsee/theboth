@@ -79,8 +79,11 @@ app.post('/webhook/', function(req, res){
         	text = "You won't believe me... he's called Nystee"
         }  
         else if(/we can be friends|be friends|we be friends|be your friend|be my friend/.test(text)){
-            text = "No, sorry i am not interested"
-        }       
+            text = "Why not !"
+        }    
+        else if(/what can you do for me|what do you know|what do u know|whats ur skills|what is your skills|whats are ure skills|whats are you good at|ur skills|your skills|your services/.test(text)){
+            text = "Wait I'm getting a cup of coffee, I'll get back to you in a sec"
+        }             
         else{
         	//text = "Parrot Mode: "+text
             text = "Hein !"
