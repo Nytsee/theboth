@@ -153,6 +153,7 @@ app.post('/webhook/', function(req, res){
         else{
             //text = "Parrot Mode: "+text
             text = "Hein !"
+            sendText(sender, text.substring(0,100))
         }
 
         
