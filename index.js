@@ -131,6 +131,10 @@ app.post('/webhook/', function(req, res){
             text = "Because you have no idea who I am"
             sendText(sender, text.substring(0,100))
         }  
+        else if(/mounir/.test(text)){
+            text = "yes i am"
+            sendText(sender, text.substring(0,100))
+        }         
         else if(/i hate u|i hate you|hate u/.test(text)){
             text = "Why do you hate me?"
             sendText(sender, text.substring(0,100))
