@@ -70,7 +70,7 @@ let msgType = "txt";
         });
     }  
 
-app.post('/setup',function(req,res){
+app.get('/setup',function(req,res){
     setupGetStartedButton(res);
 });
 
