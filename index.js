@@ -42,86 +42,79 @@ let msgType = "txt";
     
 //Get started 
 
- function addPersistentMenu(){
- request({
-    url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
-    qs: { access_token: token },
-    method: 'POST',
-    json:{
-  "get_started":{
-    "payload":"GET_STARTED_PAYLOAD"
-   }
- }
-}, function(error, response, body) {
-    console.log(response)
-    if (error) {
-        console.log('Error sending messages: ', error)
-    } else if (response.body.error) {
-        console.log('Error: ', response.body.error)
-    }
-})
- request({
-    url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
-    qs: { access_token: token },
-    method: 'POST',
-    json:{
-"persistent_menu":[
-    {
-      "locale":"default",
-      "composer_input_disabled":true,
-      "call_to_actions":[
-        {
-          "title":"My Account",
-          "type":"nested",
-          "call_to_actions":[
-            {
-              "title":"Pay Bill",
-              "type":"postback",
-              "payload":"PAYBILL_PAYLOAD"
-            },
-            {
-              "title":"History",
-              "type":"postback",
-              "payload":"HISTORY_PAYLOAD"
-            },
-            {
-              "title":"Contact Info",
-              "type":"postback",
-              "payload":"CONTACT_INFO_PAYLOAD"
-            }
-          ]
+    function setupGetStartedButton(res){
+        var messageData = {
+                "get_started":[
+                {
+                    "payload":"USER_DEFINED_PAYLOAD"
+                    }
+                ]
+        };
+
+        // Start the request
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+token,
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            form: messageData
         },
-        {
-          "type":"web_url",
-          "title":"Latest News",
-          "url":"http://foxnews.com",
-          "webview_height_ratio":"full"
-        }
-      ]
-    },
-    {
-      "locale":"zh_CN",
-      "composer_input_disabled":false
-    }
-    ]
-    }
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // Print out the response body
+                res.send(body);
 
-}, function(error, response, body) {
-    console.log(response)
-    if (error) {
-        console.log('Error sending messages: ', error)
-    } else if (response.body.error) {
-        console.log('Error: ', response.body.error)
-    }
-})
+            } else { 
+                // TODO: Handle errors
+                res.send(body);
+            }
+        });
+    }  
 
-} 
-
-
-app.get('/setup',function(req,res){
-
-    addPersistentMenu();
+app.post('/setup',function(req,res){
+    setupGetStartedButton(res);
 });
+
+
+
+function mymenu(sender, text){
+    let messageData = {text:text}
+    request({
+        url: "https://graph.facebook.com/v2.6/me/messages",
+        qs: {access_token: token},
+        method: "POST",
+        json: {
+            recipient: {id: sender},
+            message:{
+                "attachment":{
+                  "type":"template",
+                  "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://www.messenger.com",
+                        "title":"Visit Messenger"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Start Chatting",
+                        "payload":"hi"
+                      }
+                    ]
+                  }
+                }
+            }
+        }
+    }, function(error, response, body){
+        if(error){
+            console.log("Sending error")
+        }else if(response.body.error){
+            console.log("response body error")
+        }
+    })
+}
+
 
 
 
