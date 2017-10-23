@@ -39,45 +39,48 @@ app.get('/webhook/', function(req, res){
 let token = "EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa8xZCrJI1Km4r0MsL03T0actF5FbfhtDn47rOZAckBhE9rEuw4DVxUvgJjw5jVGjY3XNxM9VPTH7lbKnPYox5c5aDW4p2zI1uix2OjhQZDZD"
 let msgType = "txt";
 
+    
 
 
 
-//Send a Greeting to user for its first interaction
-// function createGreetingApi(data) {
-// request({
-// uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
-// qs: { access_token: token },
-// method: 'POST',
-// json: data
+// Send a Greeting to user for its first interaction
+function createGreetingApi(data) {
+request({
+uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
+qs: { access_token: token },
+method: 'POST',
+json: data
 
-// }, function (error, response, body) {
-// if (!error && response.statusCode == 200) {
-//   console.log("Greeting set successfully!");
-// } else {
-//   console.error("Failed calling Thread Reference API", response.statusCode,     response.statusMessage, body.error);
-// }
-// });  
-// }
+}, function (error, response, body) {
+if (!error && response.statusCode == 200) {
+  console.log("Greeting set successfully!");
+} else {
+  console.error("Failed calling Thread Reference API", response.statusCode,     response.statusMessage, body.error);
+}
+});  
+}
 
-// function setGreetingText() {
-// var greetingData = {
-//                 setting_type: "greeting",
-//                 "greeting":
-//                   {
-//                     "locale":"default",
-//                     "text":"Hello {{user_first_name}} whatsuuuuup !"
-//                   }, 
-//                   {
-//                     "locale":"en_US",
-//                      text:"Hi {{user_first_name}}, welcome! to get starting please hit the Start button !"
-//                   }
-//         };
-//      createGreetingApi(greetingData);
-// }
+function setGreetingText() {
+var greetingData = {
+                setting_type: "greeting",
+                "greeting":
+                  {
+                    "locale":"default",
+                    "text":"Hello {{user_first_name}} whatsuuuuup !"
+                  }, 
+                  {
+                    "locale":"en_US",
+                     text:"Hi {{user_first_name}}, welcome! to get starting please hit the Start button !"
+                  }
+        };
+     
+}
 
-// setGreetingText();
+setGreetingText();
 
-
+app.get('/greeting',function(req,res){
+   createGreetingApi(greetingData);
+});
 
 
 
