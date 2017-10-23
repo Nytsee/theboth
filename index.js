@@ -78,8 +78,10 @@ var greetingData = {
 
 setGreetingText();
 
+
 app.get('/greeting',function(req,res){
-   createGreetingApi(greetingData);
+   createGreetingApi(greetingData)
+   res.sendStatus(200)
 });
 
 
