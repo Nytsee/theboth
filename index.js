@@ -39,6 +39,46 @@ let token = "EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa
 let msgType = "txt";
 
 
+
+
+//Get started 
+
+    function setupGetStartedButton(res){
+        var messageData = {
+                "get_started":[
+                {
+                    "payload":"USER_DEFINED_PAYLOAD"
+                    }
+                ]
+        };
+
+        // Start the request
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ token,
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            form: messageData
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // Print out the response body
+                res.send(body);
+
+            } else { 
+                // TODO: Handle errors
+                res.send(body);
+            }
+        });
+    }  
+
+          
+app.get('/setup',function(req,res){
+
+    setupGetStartedButton(res);
+});
+
+
+
 app.post('/webhook/', function(req, res){
   let messaging_event = req.body.entry[0].messaging
   for(let i = 0; i < messaging_event.length; i++){
