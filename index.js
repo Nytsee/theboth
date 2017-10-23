@@ -48,13 +48,11 @@ let msgType = "txt";
                       "get_started":{
                         "payload":"hi"
                       },
-                      "greeting":[
+                      "greeting":
                               {
                                 "locale":"default",
                                 "text":"Hello {{user_first_name}}!"
-                              }
-                            ]
-  
+                              }  
         };
 
         // Start the request
