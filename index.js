@@ -63,9 +63,14 @@ if (!error && response.statusCode == 200) {
 function setGreetingText() {
 var greetingData = {
                 setting_type: "greeting",
-                greeting:{
-                text:"Hi {{user_first_name}}, welcome!"
-                }
+                "greeting":
+                  {
+                    "locale":"default",
+                    "text":"Hello {{user_first_name}} whatsuuuuup !"
+                  }, {
+                    "locale":"en_US",
+                     text:"Hi {{user_first_name}}, welcome! to get starting please hit the Start button !"
+                  }
         };
      createGreetingApi(greetingData);
 }
@@ -73,6 +78,7 @@ var greetingData = {
 // Then you use this method in app.listen like this:
 
 setGreetingText();
+
 
 
 
