@@ -44,12 +44,15 @@ let msgType = "txt";
 
     function setupGetStartedButton(res){
         var messageData = {
-                "get_started":[
-                {
-                    "payload":"USER_DEFINED_PAYLOAD"
-                    }
-                ]
+
+                      "get_started":{
+                        "payload":"<GET_STARTED_PAYLOAD>"
+                      }
+  
         };
+
+
+
 
         // Start the request
         request({
