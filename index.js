@@ -40,89 +40,33 @@ let token = "EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa
 let msgType = "txt";
 
     
-
-
-
-// Send a Greeting to user for its first interaction
-function createGreetingApi(data) {
-request({
-uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
-qs: { access_token: token },
-method: 'POST',
-json: data
-
-}, function (error, response, body) {
-if (!error && response.statusCode == 200) {
-  console.log("Greeting set successfully!");
-} else {
-  console.error("Failed calling Thread Reference API", response.statusCode,     response.statusMessage, body.error);
-}
-});  
-}
-
-function setGreetingText() {
-var greetingData = {
-                setting_type: "greeting",
-                "greeting":
-                  {
-                    "locale":"default",
-                    "text":"Hello {{user_first_name}} whatsuuuuup !"
-                  }, 
-                  {
-                    "locale":"en_US",
-                     text:"Hi {{user_first_name}}, welcome! to get starting please hit the Start button !"
-                  }
-        };
-     
-}
-
-setGreetingText();
-
-
-app.get('/greeting',function(req,res){
-   createGreetingApi(greetingData)
-   res.send(body);
-});
-
-
-
-
-
-
 //Get started 
 
-    function setupGetStartedButton(res){
-        var messageData = {
+ function addPersistentMenu(){
+ request({
+    url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
+    qs: { access_token: token },
+    method: 'POST',
+    json:{
+  "get_started":{
+    "payload":"GET_STARTED_PAYLOAD"
+   }
+ }
+}, function(error, response, body) {
+    console.log(response)
+    if (error) {
+        console.log('Error sending messages: ', error)
+    } else if (response.body.error) {
+        console.log('Error: ', response.body.error)
+    }
+})
 
-                      "get_started":{
-                        "payload":"hi"
-                      }
-        };
 
-        // Start the request
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+token,
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            form: messageData
-        },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                // Print out the response body
-                res.send(body);
-
-            } else { 
-                // TODO: Handle errors
-                res.send(body);
-            }
-        });
-    }  
 
 app.get('/setup',function(req,res){
-    setupGetStartedButton(res);
+
+    addPersistentMenu();
 });
-
-
 
 
 
