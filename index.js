@@ -39,7 +39,7 @@ app.get('/webhook/', function(req, res){
 let token = "EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa8xZCrJI1Km4r0MsL03T0actF5FbfhtDn47rOZAckBhE9rEuw4DVxUvgJjw5jVGjY3XNxM9VPTH7lbKnPYox5c5aDW4p2zI1uix2OjhQZDZD"
 let msgType = "txt";
 
-    
+
 //Get started 
 
     function setupGetStartedButton(res){
@@ -47,7 +47,13 @@ let msgType = "txt";
 
                       "get_started":{
                         "payload":"hi"
-                      }
+                      },
+                      "greeting":[
+                              {
+                                "locale":"default",
+                                "text":"Hello {{user_first_name}}!"
+                              }
+                            ]
   
         };
 
