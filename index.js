@@ -42,43 +42,40 @@ let msgType = "txt";
 
 
 
+//Send a Greeting to user for its first interaction
+// function createGreetingApi(data) {
+// request({
+// uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
+// qs: { access_token: token },
+// method: 'POST',
+// json: data
 
-function createGreetingApi(data) {
-request({
-uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
-qs: { access_token: token },
-method: 'POST',
-json: data
+// }, function (error, response, body) {
+// if (!error && response.statusCode == 200) {
+//   console.log("Greeting set successfully!");
+// } else {
+//   console.error("Failed calling Thread Reference API", response.statusCode,     response.statusMessage, body.error);
+// }
+// });  
+// }
 
-}, function (error, response, body) {
-if (!error && response.statusCode == 200) {
-  console.log("Greeting set successfully!");
-} else {
-  console.error("Failed calling Thread Reference API", response.statusCode,     response.statusMessage, body.error);
-}
-});  
-}
-// Then I have another method just so that I keep code readable:
+// function setGreetingText() {
+// var greetingData = {
+//                 setting_type: "greeting",
+//                 "greeting":
+//                   {
+//                     "locale":"default",
+//                     "text":"Hello {{user_first_name}} whatsuuuuup !"
+//                   }, 
+//                   {
+//                     "locale":"en_US",
+//                      text:"Hi {{user_first_name}}, welcome! to get starting please hit the Start button !"
+//                   }
+//         };
+//      createGreetingApi(greetingData);
+// }
 
-function setGreetingText() {
-var greetingData = {
-                setting_type: "greeting",
-                "greeting":
-                  {
-                    "locale":"default",
-                    "text":"Hello {{user_first_name}} whatsuuuuup !"
-                  }, 
-                  {
-                    "locale":"en_US",
-                     text:"Hi {{user_first_name}}, welcome! to get starting please hit the Start button !"
-                  }
-        };
-     createGreetingApi(greetingData);
-}
-
-// Then you use this method in app.listen like this:
-
-setGreetingText();
+// setGreetingText();
 
 
 
