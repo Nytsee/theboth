@@ -31,42 +31,15 @@ app.get('/' , function(req, res) {
 app.get('/webhook/', function(req, res){
     if(req.query['hub.verify_token'] === "blondiebytes"){
         res.send(req.query['hub.challenge'])
-    }else{
-    res.send('wrong token')
     }
+    res.send('wrong token')
+    
 })
 
 let token = "EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa8xZCrJI1Km4r0MsL03T0actF5FbfhtDn47rOZAckBhE9rEuw4DVxUvgJjw5jVGjY3XNxM9VPTH7lbKnPYox5c5aDW4p2zI1uix2OjhQZDZD"
 let msgType = "txt";
 
     
-//Get started 
-
- function addPersistentMenu(){
- request({
-    url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
-    qs: { access_token: token },
-    method: 'POST',
-    json:{
-  "get_started":{
-    "payload":"GET_STARTED_PAYLOAD"
-   }
- }
-}, function(error, response, body) {
-    console.log(response)
-    if (error) {
-        console.log('Error sending messages: ', error)
-    } else if (response.body.error) {
-        console.log('Error: ', response.body.error)
-    }
-})
-
-
-
-app.get('/setup',function(req,res){
-
-    addPersistentMenu();
-});
 
 
 
