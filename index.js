@@ -40,22 +40,53 @@ let token = "EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa
 let msgType = "txt";
 
 
+
+
+
+function createGreetingApi(data) {
+request({
+uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
+qs: { access_token: token },
+method: 'POST',
+json: data
+
+}, function (error, response, body) {
+if (!error && response.statusCode == 200) {
+  console.log("Greeting set successfully!");
+} else {
+  console.error("Failed calling Thread Reference API", response.statusCode,     response.statusMessage, body.error);
+}
+});  
+}
+// Then I have another method just so that I keep code readable:
+
+function setGreetingText() {
+var greetingData = {
+                setting_type: "greeting",
+                greeting:{
+                text:"Hi {{user_first_name}}, welcome!"
+                }
+        };
+     createGreetingApi(greetingData);
+}
+
+// Then you use this method in app.listen like this:
+
+setGreetingText();
+
+
+
+
+
+
+
 //Get started 
 
     function setupGetStartedButton(res){
         var messageData = {
 
                       "get_started":{
-                        "payload":"hi",
-                        "greeting":[
-                                      {
-                                        "locale":"default",
-                                        "text":"Hello!"
-                                      }, {
-                                        "locale":"en_US",
-                                        "text":"Timeless apparel for the masses."
-                                      }
-                                    ]
+                        "payload":"hi"
                       }
         };
 
