@@ -46,13 +46,10 @@ let msgType = "txt";
         var messageData = {
 
                       "get_started":{
-                        "payload":"<GET_STARTED_PAYLOAD>"
+                        "payload":"hi"
                       }
   
         };
-
-
-
 
         // Start the request
         request({
@@ -77,46 +74,6 @@ app.get('/setup',function(req,res){
     setupGetStartedButton(res);
 });
 
-
-
-function mymenu(sender, text){
-    let messageData = {text:text}
-    request({
-        url: "https://graph.facebook.com/v2.6/me/messages",
-        qs: {access_token: token},
-        method: "POST",
-        json: {
-            recipient: {id: sender},
-            message:{
-                "attachment":{
-                  "type":"template",
-                  "payload":{
-                    "template_type":"button",
-                    "text":"What do you want to do next?",
-                    "buttons":[
-                      {
-                        "type":"web_url",
-                        "url":"https://www.messenger.com",
-                        "title":"Visit Messenger"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Start Chatting",
-                        "payload":"hi"
-                      }
-                    ]
-                  }
-                }
-            }
-        }
-    }, function(error, response, body){
-        if(error){
-            console.log("Sending error")
-        }else if(response.body.error){
-            console.log("response body error")
-        }
-    })
-}
 
 
 
