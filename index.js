@@ -67,7 +67,8 @@ var greetingData = {
                   {
                     "locale":"default",
                     "text":"Hello {{user_first_name}} whatsuuuuup !"
-                  }, {
+                  }, 
+                  {
                     "locale":"en_US",
                      text:"Hi {{user_first_name}}, welcome! to get starting please hit the Start button !"
                   }
