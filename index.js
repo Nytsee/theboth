@@ -42,38 +42,85 @@ let msgType = "txt";
     
 //Get started 
 
-    function setupGetStartedButton(res){
-        var messageData = {
-                "get_started":[
-                {
-                    "payload":"Hello you ! let's get started"
-                    }
-                ]
-        };
-
-        // Start the request
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+token,
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            form: messageData
-        },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                // Print out the response body
-                res.send(body);
-
-            } else { 
-                // TODO: Handle errors
-                res.send(body);
+ function addPersistentMenu(){
+ request({
+    url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
+    qs: { access_token: token },
+    method: 'POST',
+    json:{
+  "get_started":{
+    "payload":"GET_STARTED_PAYLOAD"
+   }
+ }
+}, function(error, response, body) {
+    console.log(response)
+    if (error) {
+        console.log('Error sending messages: ', error)
+    } else if (response.body.error) {
+        console.log('Error: ', response.body.error)
+    }
+})
+ request({
+    url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
+    qs: { access_token: token },
+    method: 'POST',
+    json:{
+"persistent_menu":[
+    {
+      "locale":"default",
+      "composer_input_disabled":true,
+      "call_to_actions":[
+        {
+          "title":"My Account",
+          "type":"nested",
+          "call_to_actions":[
+            {
+              "title":"Pay Bill",
+              "type":"postback",
+              "payload":"PAYBILL_PAYLOAD"
+            },
+            {
+              "title":"History",
+              "type":"postback",
+              "payload":"HISTORY_PAYLOAD"
+            },
+            {
+              "title":"Contact Info",
+              "type":"postback",
+              "payload":"CONTACT_INFO_PAYLOAD"
             }
-        });
-    }  
+          ]
+        },
+        {
+          "type":"web_url",
+          "title":"Latest News",
+          "url":"http://foxnews.com",
+          "webview_height_ratio":"full"
+        }
+      ]
+    },
+    {
+      "locale":"zh_CN",
+      "composer_input_disabled":false
+    }
+    ]
+    }
+
+}, function(error, response, body) {
+    console.log(response)
+    if (error) {
+        console.log('Error sending messages: ', error)
+    } else if (response.body.error) {
+        console.log('Error: ', response.body.error)
+    }
+})
+
+} 
 
 
 app.get('/setup',function(req,res){
 
-    setupGetStartedButton(res);
+    addPersistentMenu();
 });
 
 
