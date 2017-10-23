@@ -46,13 +46,17 @@ let msgType = "txt";
         var messageData = {
 
                       "get_started":{
-                        "payload":"hi"
-                      },
-                      "greeting":
-                              {
-                                "locale":"default",
-                                "text":"Hello {{user_first_name}}!"
-                              }  
+                        "payload":"hi",
+                        "greeting":[
+                                      {
+                                        "locale":"default",
+                                        "text":"Hello!"
+                                      }, {
+                                        "locale":"en_US",
+                                        "text":"Timeless apparel for the masses."
+                                      }
+                                    ]
+                      }
         };
 
         // Start the request
