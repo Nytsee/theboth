@@ -60,6 +60,10 @@ app.post('/webhook/', function(req, res){
             text = "It doesn't matter, am just a programmed Bot :)"
             sendText(sender, text.substring(0,100))
         }
+                else if(/okok/.test(text)){
+            text = "It doesn't matter, am just a programmed Bot :)"
+            sendText(sender, text.substring(0,100))
+        }
         else if(/do you understand|do u understand me|you understand/.test(text)){
             text = "when i do not understand i become an ugly parrot :/"
             sendText(sender, text.substring(0,100))
