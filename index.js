@@ -163,7 +163,7 @@ app.post('/webhook/', function(req, res){
         	text = "Please turn on your GEO location in order to provide you the closest Agencies"
             sendChoiceLink(sender, text)
         }         
-        else if(/About our Agencies/.test(text)){
+        else if(/about our agencies/.test(text)){
             sendChoiceLink(sender, text)
         }                                                                     
         else{
