@@ -61,7 +61,7 @@ app.post('/webhook/', function(req, res){
             sendText(sender, text.substring(0,100))
         }
                 else if(/okok/.test(text)){
-            text = "It doesn't matter, am just a programmed Bot :)"
+            text = "my name is {{ fb.first.name }}"
             sendText(sender, text.substring(0,100))
         }
         else if(/do you understand|do u understand me|you understand/.test(text)){
@@ -160,6 +160,10 @@ app.post('/webhook/', function(req, res){
             sendText(sender, text.substring(0,100))
         }  
         else if(/show me what you got|show me|amaze me/.test(text)){
+        	text = "Please turn on your GEO location in order to provide you the closest Agencies"
+            sendChoiceLink(sender, text)
+        }         
+        else if(/About our Agencies/.test(text)){
             sendChoiceLink(sender, text)
         }                                                                     
         else{
@@ -261,6 +265,35 @@ function sendChoiceLink(sender, text){
     })
 }
 
+
+// curl -X POST -H "Content-Type: application/json" -d '{
+//   "setting_type" : "call_to_actions",
+//   "thread_state" : "existing_thread",
+//   "call_to_actions":[
+//     {
+//       "type":"postback",
+//       "title":"Current Offers",
+//       "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HELP"
+//     },
+//     {
+//       "type":"postback",
+//       "title":"About our Agencies",
+//       "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_LATEST_POSTS"
+//     },
+//     {
+//       "type":"web_url",
+//       "title":"View our new Website",
+//       "url":"http://yoursite.com/"
+//     }
+//   ]
+// }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa8xZCrJI1Km4r0MsL03T0actF5FbfhtDn47rOZAckBhE9rEuw4DVxUvgJjw5jVGjY3XNxM9VPTH7lbKnPYox5c5aDW4p2zI1uix2OjhQZDZD"
+
+
+
+// curl -X DELETE -H "Content-Type: application/json" -d '{
+//   "setting_type":"call_to_actions",
+//   "thread_state":"existing_thread"
+// }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAACPcU7rwo8BAOv5tuKahbrLt8sj4XxEkDZAE9wCHbUCtXPcsSM6osbHVQt6N1TGJa8xZCrJI1Km4r0MsL03T0actF5FbfhtDn47rOZAckBhE9rEuw4DVxUvgJjw5jVGjY3XNxM9VPTH7lbKnPYox5c5aDW4p2zI1uix2OjhQZDZD"
 
 
 app.listen(app.get('port'), function(){
