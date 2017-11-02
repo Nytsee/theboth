@@ -50,8 +50,13 @@ app.post('/webhook/', function(req, res){
     let sender = event.sender.id
 
     if (event.postback) {
-			let text = JSON.stringify(event.postback)
-			sendText(sender, "Postback received: "+text.substring(0, 200), token)
+    	    let text = event.postback.toLowerCase();
+			//let text = JSON.stringify(event.postback)
+
+		if(/about our agencies/.test(text)){
+        	text = "Please turn on your GEO location in order to provide you the closest Agencies"
+            sendText(sender, text)
+        } 
 			continue
 	}
 
@@ -167,11 +172,7 @@ app.post('/webhook/', function(req, res){
         }  
         else if(/show me what you got|show me|amaze me/.test(text)){
             sendChoiceLink(sender, text)
-        }         
-        else if(/about our agencies/.test(text)){
-        	text = "Please turn on your GEO location in order to provide you the closest Agencies"
-            sendText(sender, text)
-        }                                                                     
+        }                                                                             
         else{
             //text = "Parrot Mode: "+text
             text = "Hein !"
