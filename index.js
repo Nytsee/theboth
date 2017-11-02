@@ -49,6 +49,12 @@ app.post('/webhook/', function(req, res){
     let event = messaging_event[i]
     let sender = event.sender.id
 
+    if (event.postback) {
+			let text = JSON.stringify(event.postback)
+			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+			continue
+	}
+
     if(event.message && event.message.text){
         let text = event.message.text.toLowerCase();
 
@@ -278,7 +284,7 @@ function sendChoiceLink(sender, text){
 //     {
 //       "type":"postback",
 //       "title":"About our Agencies",
-//       "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_LATEST_POSTS"
+//       "payload":"about our agencies"
 //     },
 //     {
 //       "type":"web_url",
