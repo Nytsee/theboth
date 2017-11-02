@@ -50,8 +50,7 @@ app.post('/webhook/', function(req, res){
     let sender = event.sender.id
 
     if (event.postback) {
-    	    let text = event.postback.toLowerCase();
-			//let text = JSON.stringify(event.postback)
+			let text = JSON.stringify(event.postback).toLowerCase()
 
 		if(/about our agencies/.test(text)){
         	text = "Please turn on your GEO location in order to provide you the closest Agencies"
