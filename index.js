@@ -271,7 +271,7 @@ function sendChoiceLink(sender, text){
     })
 }
 
-//to activate or desactivate curl command
+//to activate or desactivate curl command..
 // curl -X POST -H "Content-Type: application/json" -d '{
 //   "setting_type" : "call_to_actions",
 //   "thread_state" : "existing_thread",
