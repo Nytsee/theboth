@@ -177,7 +177,7 @@ app.post('/webhook/', function(req, res){
             text = "Hein !"
             sendText(sender, text.substring(0,100))
         }
-
+        //switch case
         //  switch(text) {
 
         //     case "hi":
